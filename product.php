@@ -537,4 +537,17 @@ class ModelCatalogProduct extends Model {
 			return 0;
 		}
 	}
+        //Get unique category groupe by product ID
+    public function UniqueCategory(){
+       $query = $this->db->query("SELECT * FROM `oc_product_to_category` ");
+  		if (isset($query->rows)) {
+  		    foreach($query->rows as $row){
+  		        $data [$row['product_id']] = $row['category_id'];
+  		    }
+			return $data;
+		} else {
+			return 0;
+		}
+               
+    }
 }
